@@ -9,15 +9,17 @@ const initialState = {
 };
 
 export default function page() {
-  const router = useRouter();
   const [loginData, setLoginData] = useState(initialState);
   const [loading, setloading] = useState(false);
-  const docterLoginHandler = async (e) => {
+  const router = useRouter();
+  const patientLoginHandler = async (e) => {
     e.preventDefault();
     const credentials = {
+      for: "patient",
       email: loginData.email,
       password: loginData.password,
     };
+
     try {
       setloading(true);
       const result = await signIn("credentials", {
@@ -29,6 +31,7 @@ export default function page() {
         throw new Error("Login failed:", result.error);
       } else {
         alert("Login successful:", result);
+        router.push("/dashboard");
       }
     } catch (error) {
       alert(error.message);
@@ -49,11 +52,12 @@ export default function page() {
           login As a Patient
         </h1>
         <div className={classes.login}>
-          <form className={classes.form} onSubmit={docterLoginHandler}>
+          <form className={classes.form} onSubmit={patientLoginHandler}>
             <label className={classes.label} htmlFor="chk" aria-hidden="true">
               SignIn
             </label>
             <input
+              value={loginData.email}
               onChange={InputsChangeHandler}
               className={classes.input}
               type="email"
@@ -62,6 +66,7 @@ export default function page() {
               required
             />
             <input
+              value={loginData.password}
               onChange={InputsChangeHandler}
               className={classes.input}
               type="password"

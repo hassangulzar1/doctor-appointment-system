@@ -2,20 +2,25 @@
 import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import classes from "./DoctorSignup.module.css";
+import { useRouter } from "next/navigation";
+
 const initialState = {
   email: "",
   password: "",
 };
 
 export default function page() {
+  const router = useRouter();
   const [loginData, setLoginData] = useState(initialState);
   const [loading, setloading] = useState(false);
   const docterLoginHandler = async (e) => {
     e.preventDefault();
     const credentials = {
+      for: "doctor",
       email: loginData.email,
       password: loginData.password,
     };
+
     try {
       setloading(true);
       const result = await signIn("credentials", {
@@ -27,6 +32,7 @@ export default function page() {
         throw new Error("Login failed:", result.error);
       } else {
         alert("Login successful");
+        router.push("/dashboard");
       }
     } catch (error) {
       alert(error.message);
@@ -52,6 +58,7 @@ export default function page() {
               SignIn
             </label>
             <input
+              value={loginData.email}
               onChange={InputsChangeHandler}
               className={classes.input}
               type="email"
@@ -60,6 +67,7 @@ export default function page() {
               required
             />
             <input
+              value={loginData.password}
               onChange={InputsChangeHandler}
               className={classes.input}
               type="password"
@@ -70,34 +78,6 @@ export default function page() {
             <button type="submit">{loading ? "Loading..." : "Sign In"}</button>
           </form>
         </div>
-
-        {/* <div className={classes.register}>
-          <form className={classes.form}>
-            <label className={classes.label}>Register</label>
-            <input
-              className={classes.input}
-              type="text"
-              name="txt"
-              placeholder="Username"
-              required
-            />
-            <input
-              className={classes.input}
-              type="email"
-              name="email"
-              placeholder="Email"
-              required
-            />
-            <input
-              className={classes.input}
-              type="password"
-              name="pswd"
-              placeholder="Password"
-              required
-            />
-            <button>Register</button>
-          </form>
-        </div> */}
       </div>
     </div>
   );

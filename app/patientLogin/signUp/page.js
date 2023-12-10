@@ -58,7 +58,7 @@ export default function page() {
       <form className={classes.form} onSubmit={registerHandler}>
         <p className={classes.title}>Register </p>
         <p className={classes.message}>
-          Signup now and get full access to our app.{" "}
+          Signup now and get full access to our app.
         </p>
         <div className="flex">
           <label>
@@ -108,7 +108,7 @@ export default function page() {
             value={regiser.contactDetails}
             type="text"
             placeholder=""
-            name="contactDetail"
+            name="contactDetails"
             required
           />
           <span>Contact Detail</span>

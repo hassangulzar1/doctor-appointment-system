@@ -8,28 +8,50 @@ export const options = {
         email: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
       },
+
       async authorize(credentials) {
-        const user = await prisma.doctors.findFirst({
-          where: {
-            AND: [
-              {
-                email: credentials.email,
-              },
-              {
-                password: credentials.password,
-              },
-            ],
-          },
-        });
-        if (user) {
-          return user;
+        if (credentials.for === "doctor") {
+          const user = await prisma.doctors.findFirst({
+            where: {
+              AND: [
+                {
+                  email: credentials.email,
+                },
+                {
+                  password: credentials.password,
+                },
+              ],
+            },
+          });
+          if (user) {
+            return user;
+          } else {
+            return null;
+          }
         } else {
-          return null;
+          const user = await prisma.patients.findFirst({
+            where: {
+              AND: [
+                {
+                  email: credentials.email,
+                },
+                {
+                  password: credentials.password,
+                },
+              ],
+            },
+          });
+          if (user) {
+            return user;
+          } else {
+            return null;
+          }
         }
       },
     }),
   ],
+
   pages: {
-    signIn: "/doctorLogin", // Customize the login page URL
+    signIn: "/doctorLogin",
   },
 };
