@@ -3,12 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import classes from "./dashboard.module.css";
-import Doctors from "../../components/doctorsCard/Doctors";
 
 export default function Page() {
   const [patientData, setPatientData] = useState([]);
   const [DoctorData, setDoctorData] = useState([]);
-  const [appointments, setAppointments] = useState(null);
 
   const fetching = async () => {
     try {
@@ -32,10 +30,9 @@ export default function Page() {
     }
   };
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      fetching();
-    }
+    fetching();
   }, []);
+
   const router = useRouter();
 
   const { data: session } = useSession();
@@ -58,8 +55,6 @@ export default function Page() {
     }
   });
 
-  const bookAppointmentHandler = () => {};
-
   return (
     <div className={classes.mainDiv}>
       {ifPatient.length != 0 && (
@@ -75,9 +70,7 @@ export default function Page() {
       {ifPatient.length != 0 && (
         <div className="h-2/5 w-2/5 flex flex-col bottom-2 border-current justify-center align-middle">
           <h1 className="text-2xl text-center my-5">{DoctorData[0].name}</h1>
-          <button className=" underline" onClick={bookAppointmentHandler}>
-            Book-Appointment
-          </button>
+          <button className=" underline">Book-Appointment</button>
         </div>
       )}
 
