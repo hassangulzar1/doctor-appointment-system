@@ -36,7 +36,9 @@ export default function Page() {
   const { data: session } = useSession();
 
   if (!session) {
-    alert("not found");
+    if (typeof window !== "undefined") {
+      alert("not found");
+    }
   }
 
   const user = session?.user;
