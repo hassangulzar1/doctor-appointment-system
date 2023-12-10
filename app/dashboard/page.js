@@ -25,7 +25,9 @@ export default function Page() {
       setPatientData(data[0]);
       setDoctorData(data[1]);
     } catch (error) {
-      alert(error);
+      if (typeof window !== "undefined") {
+        alert(error.message);
+      }
     }
   };
 
