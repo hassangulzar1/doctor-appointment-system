@@ -11,7 +11,7 @@ const initialState = {
   medicalHistory: "",
 };
 
-export default function page() {
+export default function Page() {
   const router = useRouter();
   const [regiser, setRegiser] = useState(initialState);
   const [loading, setloading] = useState(false);

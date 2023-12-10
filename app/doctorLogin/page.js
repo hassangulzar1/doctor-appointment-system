@@ -9,7 +9,7 @@ const initialState = {
   password: "",
 };
 
-export default function page() {
+export default function Page() {
   const router = useRouter();
   const [loginData, setLoginData] = useState(initialState);
   const [loading, setloading] = useState(false);

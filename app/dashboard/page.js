@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import classes from "./dashboard.module.css";
 import Doctors from "../(components)/doctorsCard/Doctors";
 
-export default function page() {
+export default function Page() {
   const [patientData, setPatientData] = useState([]);
   const [DoctorData, setDoctorData] = useState([]);
   const [appointments, setAppointments] = useState(null);

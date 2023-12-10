@@ -32,3 +32,4 @@ model appointments {
   notes String
   patientContact String
 }
+
