@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import classes from "./dashboard.module.css";
 
 export default function Page() {
@@ -29,16 +28,15 @@ export default function Page() {
       alert(error);
     }
   };
+
   useEffect(() => {
     fetching();
   }, []);
 
-  const router = useRouter();
-
   const { data: session } = useSession();
 
   if (!session) {
-    router.push("/patientLogin");
+    alert("not found");
   }
 
   const user = session?.user;
