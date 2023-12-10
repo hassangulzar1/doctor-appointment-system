@@ -32,16 +32,16 @@ export default function Page() {
     }
   };
   useEffect(() => {
-    fetching();
+    if (typeof window !== "undefined") {
+      fetching();
+    }
   }, []);
   const router = useRouter();
 
   const { data: session } = useSession();
 
-  if (typeof window !== "undefined") {
-    if (!session) {
-      router.push("/patientLogin");
-    }
+  if (!session) {
+    router.push("/patientLogin");
   }
 
   const user = session?.user;
