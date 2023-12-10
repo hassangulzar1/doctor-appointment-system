@@ -76,7 +76,7 @@ export default function Page() {
             />
             <button type="submit">{loading ? "Loading..." : "Sign In"}</button>
             <p className=" text-lime-50">
-              Don't Have Account?
+              Don&apos;t Have Account?
               <a
                 onClick={() => router.push("/patientLogin/signUp")}
                 className=" mx-2 underline cursor-pointer"
