@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body > table {
+  width: 80%;
+  margin: 40px auto;
+  background-color: lightgreen;
+}
+table {
+  border-collapse: collapse;
+}
+table.list {
+  width: 100%;
+}
+td,
+th {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 8px 15px;
+}
+tr:nth-child(even),
+table.list thead > tr {
+  background-color: #ddd;
+}

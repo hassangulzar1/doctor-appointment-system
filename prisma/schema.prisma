@@ -9,7 +9,7 @@ generator client {
 model doctors {
   id    String  @id @default(auto()) @map("_id") @db.ObjectId 
   name  String 
-  email String
+  email String @unique
   password String
   specialization String
   contactInfo String
@@ -18,7 +18,7 @@ model doctors {
 model patients {
   id    String  @id @default(auto()) @map("_id") @db.ObjectId
   name String
-  email String
+  email String @unique
   password String
   contactDetails String
   medicalHistory String
@@ -26,8 +26,9 @@ model patients {
 
 model appointments {
   id    String  @id @default(auto()) @map("_id") @db.ObjectId
-  doctorId String
-  patientId String
+  patientName String
+  patientDecise String
   dateTime DateTime
   notes String
+  patientContact String
 }
