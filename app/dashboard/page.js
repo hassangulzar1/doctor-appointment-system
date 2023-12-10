@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import classes from "./dashboard.module.css";
-import Doctors from "../(components)/doctorsCard/Doctors";
+import Doctors from "../../components/doctorsCard/Doctors";
 
 export default function Page() {
   const [patientData, setPatientData] = useState([]);
