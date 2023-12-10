@@ -1,0 +1,41 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+model doctors {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId 
+  name  String 
+  specialization String
+  contactInfo String
+  schedule Schedule[]
+  
+}
+
+model Schedule {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  startTime DateTime
+  endTime DateTime
+  available Boolean
+  doctorId String
+  doctor  doctors  @relation(fields: [doctorId], references: [id])
+}
+
+
+model patients {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  contactDetails String
+  medicalHistory String
+}
+
+model appointments {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  doctorId String
+  patientId String
+  dateTime DateTime
+  notes String
+}
