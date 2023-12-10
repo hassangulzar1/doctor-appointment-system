@@ -38,9 +38,12 @@ export default function Page() {
 
   const { data: session } = useSession();
 
-  if (!session) {
-    router.push("/patientLogin");
+  if (typeof window !== "undefined") {
+    if (!session) {
+      router.push("/patientLogin");
+    }
   }
+
   const user = session?.user;
 
   const ifPatient = patientData.filter((item) => {
