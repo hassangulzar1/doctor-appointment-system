@@ -1,10 +1,9 @@
-import { prisma } from "@/config/prisma";
-const auth = async () => {
-  const data = await prisma.patients.findMany();
-  return data;
-};
-
+import classes from "./home.module.css";
+import ButtonClient from "./(components)/ButtonOnClient/ButtonClient";
 export default async function Home() {
-  const data = await auth();
-  return <div>FUll Stack app</div>;
+  return (
+    <div className={classes.mainDiv}>
+      <ButtonClient />
+    </div>
+  );
 }

@@ -9,25 +9,17 @@ generator client {
 model doctors {
   id    String  @id @default(auto()) @map("_id") @db.ObjectId 
   name  String 
+  email String
+  password String
   specialization String
   contactInfo String
-  schedule Schedule[]
-  
 }
-
-model Schedule {
-  id    String  @id @default(auto()) @map("_id") @db.ObjectId
-  startTime DateTime
-  endTime DateTime
-  available Boolean
-  doctorId String
-  doctor  doctors  @relation(fields: [doctorId], references: [id])
-}
-
 
 model patients {
   id    String  @id @default(auto()) @map("_id") @db.ObjectId
   name String
+  email String
+  password String
   contactDetails String
   medicalHistory String
 }
